@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="../CV/styles/stylesIndex.css" />
+
+  <title>Accueil</title>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <h1>Mon site personnel</h1>
+      <h2>Accueil</h2>
+    </header>
+    <!-- le menu de navigation -->
+    <nav>
+      <ul>
+        <li><a href="../CV/index.php">Accueil</a></li>
+	    <li><a href="../CV/cv.html" >Mon CV</a></li>
+	    <li><a href="../CV/agenda.html" >Agenda</a></li>
+	    <li><a href="../CV/photos.php" >Photos</a></li>
+		<li id="admin"><a href="./ajoutPhoto.html">Administration</a></li>
+
+      </ul>
+    </nav>
+    <!-- le contenu de la page -->
+    <span>
+    <div>
+        <form action="../CV/ajoutPhotos.php" method="POST" enctype="multipart/form-data">
+        Image : <input type="file" name="image" size="40"/><br/>
+        Description : <input type="text" name="description" size="40"/><br/>
+        <input type="submit" name="OK" value="Téléverser" />
+        </form>
+    </div>
+    </span>
+
+    </span>
+      </span>
+
+  </div>
+</body>
+</html>	

@@ -1,0 +1,107 @@
+@import url('stylesCommuns.css');
+
+
+#agenda thead{
+  background-color: #3399FF;
+  font: bold;
+  color: white;
+}
+
+#agenda thead th{
+  width: 150px;
+  border: solid black 2px;
+}
+
+#agenda tbody td{
+  border:solid black 2px;
+  height: 50px;
+}
+
+#agenda{
+  text-align: center;
+  border-collapse: collapse;
+  margin-top: 10px
+}
+
+#legende{
+  margin-top: 20px
+}
+
+
+
+.anglais {
+  background-color: #FF8533;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.prog {
+  background-color: #47D147;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.rezo{
+  background-color: #9494FF;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.bdd{
+  background-color: #FFA9A9;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.algo{
+  background-color: yellow;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.genie{
+  background-color: #FF0066;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.system{
+  background-color: #FF3300;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.techno{
+  background-color: #336833;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.sport{
+  background-color: #00CC00;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.horraires{
+  background-color: #80CCCC;
+  border:solid black 1px;
+  width: 20px;
+  height: 15px;
+}
+
+.miam{
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  background-image:url("../images/pizza.jpg");
+}

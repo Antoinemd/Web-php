@@ -1,0 +1,30 @@
+@import url('stylesCommuns.css');
+
+section h2{
+  background-color: #66FFFF;
+  margin-bottom: 6px;
+  clear: both;
+}
+
+img{
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+dt{
+  font-weight: bold;
+}
+
+dd{
+  margin-left: 10px;
+  margin-bottom: 8px;
+}
+
+.date {
+  float: right;
+}
+
+section dt:hover{
+  background-color: #00bfff;
+}

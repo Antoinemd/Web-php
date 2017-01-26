@@ -1,0 +1,63 @@
+@import url('stylesCommuns.css');
+
+#gallery{
+  text-align: center;
+  border-collapse: collapse;
+  margin-top: 10px
+}
+
+li{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.image{
+  margin: 20px;
+  padding: 30px;
+  border: 1px solid #0000ff;
+  height: 250px;
+  width: 250px;
+  float: left;
+  text-align: center;
+}
+
+.upload{
+  margin-top: 20px;
+}
+
+div.image img {
+    display: inline;
+    margin: 5px;
+    border: 1px solid #ffffff;
+}
+
+/* Encadrer l'image en bleu lorsqu'elle est surlignée */
+div.image a:hover img {
+    border:1px solid #0000ff;
+}
+
+.desc {
+    display: block;
+    margin-top: 50px;
+    text-align: center;
+    font-weight: bolder;
+    width: 200px;
+    margin: 5px;
+}
+
+.image img {
+    -webkit-transition: all 0.5s ease; /* Safari and Chrome */
+    -moz-transition: all 0.5s ease; /* Firefox */
+    -ms-transition: all 0.5s ease; /* IE 9 */
+    -o-transition: all 1s ease; /* Opera */
+    transition: all 0.5s ease;
+
+}
+
+.image:hover img {
+    -webkit-transform:scale(1.25); /* Safari and Chrome */
+    -moz-transform:scale(1.25); /* Firefox */
+    -ms-transform:scale(1.25); /* IE 9 */
+    -o-transform:scale(1.25); /* Opera */
+     transform:scale(1.25);
+}
