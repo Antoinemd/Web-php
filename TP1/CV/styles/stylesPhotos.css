@@ -12,11 +12,11 @@ li{
 }
 
 .image{
-  margin: 20px;
+  margin: 40px;
   padding: 30px;
   border: 1px solid #0000ff;
-  height: 250px;
-  width: 250px;
+  height: auto;
+  width: auto;
   float: left;
   text-align: center;
 }
@@ -51,7 +51,6 @@ div.image a:hover img {
     -ms-transition: all 0.5s ease; /* IE 9 */
     -o-transition: all 1s ease; /* Opera */
     transition: all 0.5s ease;
-
 }
 
 .image:hover img {

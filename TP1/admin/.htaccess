@@ -1,0 +1,4 @@
+AuthUserFile "/var/www/html/LTW2/TP1/admin/.htpasswd"
+AuthName "Administration"
+AuthType Basic
+Require valid-user

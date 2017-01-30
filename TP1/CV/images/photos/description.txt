@@ -1,9 +1,4 @@
-photo1.jpg : Audrey et Noria en action
-photo2.jpg : Traineau au Yukon
-photo3.jpg : Elodie à Arts Umbrella
-image2.jpg : C'est l'automne !
-image3.jpg : Encore une photo de fleur
-image4.jpg : Une photo de plante vert-ical !
-image5.jpg : Une photo de de feuillage
 image1.jpg : une fleur bleu
-jazz.jpg : danse
+photo1Small.jpg : Une cavalière
+photo2Small.jpg : un chien de traneau
+photo3Small : une danceuse

@@ -1,3 +1,122 @@
+<?php 
+
+  // session_start();
+
+  include("../admin/connexpdo.php");
+  include("./blockLoggin.php");
+  // require_once('./index.php');
+    // session_start();
+// session_destroy();
+//   $connexionBar = "Authentification:";
+
+//   if(isset($_SESSION["is_auth"])) {
+//   // if(isset($_SESSION['login'])){
+
+//     $connexionBar = "Bonjour " . $_SESSION['login'] . " ! ";
+//     $connectBtn = "Deconnexion";
+//     $menuHTML = <<<EOT
+
+//     <ul>
+//       <li><a href='index.php'>Accueil</a></li>
+//       <li><a href='lesequipes.php' >Les équipes</a></li>
+//       <li><a href='terrains.php' >Terrains</a></li>
+//       <li>  
+//         &nbsp;&nbsp;&nbsp;&nbsp;
+
+//         <form action="../admin/logout.php">
+//           $connexionBar
+//           <input type='submit' value="$connectBtn" />
+//         </form>
+//       </li>
+//     </ul>
+// EOT;
+//   $_SESSION["espaceMembre"] = $menuHTML;
+
+//   } else {
+//     $connectBtn = "Connexion";
+
+//     // EOT => permet de stocker une variable sur plusieurs lignes
+//     $menuHTML = <<<EOT
+    
+//     <ul>
+//       <li><a href='index.php'>Accueil</a></li>
+//       <li><a href='lesequipes.php' >Les équipes</a></li>
+//       <li><a href='terrains.php' >Terrains</a></li>
+//       <li>  
+//         &nbsp;&nbsp;&nbsp;&nbsp; 
+        
+//         <form action="../admin/login.php" method="post">
+//           $connexionBar
+//           <input type="text" size="8" name="login" />
+//           <input type="password" size="8" name="pwd" />
+//           <input type="submit" value="$connectBtn"/>
+//         </form>
+//       </li>
+//     </ul>
+// EOT;
+//     $_SESSION["espaceVisiteur"] = $menuHTML;
+//   }
+
+
+  
+  function afficherEquipe($sexe,$base,$param) {
+    if($sexe == 'M'){
+      $requette = "SELECT * FROM equipes WHERE sexe = 'M' ";
+    } 
+    if($sexe == 'F'){
+      $requette = "SELECT * FROM equipes WHERE sexe = 'F' ";
+    }
+
+    // Ajouter une équipe
+    if(isset($_SESSION["is_auth"])) {
+      echo "<img src='images/addTeam.jpg' height='60' width='60'/>";
+    }    
+
+    if($idcom = connexpdo($base,$param)) {
+      // if($idcom = connexpdo()) {
+      $resultat = $idcom->query($requette);
+        
+      echo "<ul>";
+      while($ligne = $resultat->fetch(PDO::FETCH_NUM)){
+        echo "<li>";
+
+          //Affichage des éléments d'édition pour la partie admin
+          if(isset($_SESSION["is_auth"])) {
+            echo "<img src='images/edit.jpg' height='32' width='32'/>";
+            echo "<img src='images/trash.jpg' height='32' width='32'/>";
+           }
+
+          // Affichage des images
+          echo "<img src= 'images/". $ligne[5] ."'> ";
+          echo "<img src= 'images/". $ligne[4] ."'> ";
+          
+          // Affichage de la promotion
+          echo "<h2>" . $ligne[0] . " - " . $ligne[1] . "</h2>";
+            
+          //Affichage des détails de l'équipe
+          echo "<ul>";
+            echo "<li> Entraineur : ". $ligne[3] ."</li>";
+            echo "<li> <a href= 'equipe.php'> Composition </a> </li>";
+            echo "<li> Championnat </li>";
+              
+            echo "<ul>";
+              echo "<li> <a href=" . $ligne[6] . "> Résultats dernières journées </a> </li>";
+              echo "<li> <a href=" . $ligne[7] . "> Classement </a> </li>";
+            echo "</ul>";
+          echo "</ul>";
+
+          // echo "</td>";
+          // echo "</tr>";
+        echo "</li>"; // FIN du listing DES équipe 
+      }
+      echo "</ul>";
+ 
+      $resultat->closeCursor();
+      $idcom = NULL; 
+    }
+  }
+  ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,91 +131,38 @@
       <h2>Les Equipes</h2>
     </header>
     <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="lesequipes.html" >Les équipes</a></li>
-        <li><a href="terrains.html" >Terrains</a></li>
-        <li>	
-          &nbsp;&nbsp;&nbsp;&nbsp; 
-          <form action="connexion.php" method="post">
-          	Identifiant : <input type="text" size="16" name="login" />
-          	Mot de passe : <input type="password" size="16" name="passwd" />
-          	<input type="submit" value="Se connecter" />
-          </form>
+      <ul> 
+        <li><a href='index.php'>Accueil</a></li>
+        <li><a href='lesequipes.php' >Les équipes</a></li>
+        <li><a href='terrains.php' >Terrains</a></li>
+        <li>  
+          &nbsp;&nbsp;&nbsp;&nbsp;
+           <?php
+             session_start();
+             afficherBlockLoggin();
+          ?>
         </li>
       </ul>
     </nav>         
 
-    <?php 
-
-    $host="localhost";
-    $dbname="les_equipes";
-    $user="root";
-    $pass="root";
-
-    $idcom = new PDO("mysql:host=$host;dbname=$base",$user,$pass);
-
-
-     ?>
-
-
-    <section>
-
-
+    <section> <!-- Debut du listing DES équipes MASCULINES -->
       <h1>Equipes Masculines </h1>
-
-
-
-      <ul>  <!-- Début du listing des équipes  -->
-      	
-        <li> <!-- Début affichage de une équipe  -->
-
-          <img src="images/u18Small.jpg"/>
-          <img src="images/chris.jpg"/>
-          <h2>u18 Promotion d'excellence</h2>
-          <ul>
-            <li>Entraineur : Chris</li>
-            <li><a href="equipe.php?equipe=u18">Composition</a></li>
-            <li>Championnat
-              <ul>
-                <li><a href="http://isere.fff.fr/competitions/php/championnat/championnat_resultat.php?sa_no=2012&cp_no=284409&ph_no=1&gp_no=1">Résultats dernière journée</a></li>
-                <li><a href="http://isere.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2012&cp_no=284409&ph_no=1&gp_no=1">Classement</a></li>
-              </ul>
-            </li>
-          </ul>
-
-        </li> <!-- Fin affichage de une équipe  -->
-
-
-      </ul>   <!-- Fin du listing de UNE équipe -->
-
-
-    </section> <!-- Fin du listing DES équipes MASCULINES -->
-
-
+        <?php
+          $var1 = 'M';
+          $varBase = "les_equipes";
+          $paramFile = "myparam";
+          afficherEquipe($var1,$varBase,$paramFile);
+        ?> 
+    </section>
 
     <section> <!-- Debut du listing DES équipes FEMININES -->
-
-
       <h1>Equipes Féminines</h1>
-      <ul>
-      	<li>
-      	  <img src="images/seniors_F.jpg"/>
-      	  <img src="images/sandra.jpg"/>
-      	  <h2>Seniors Feminines a 11 Seniors</h2>
-      	  <ul>
-      	  	<li>Entraineur : Sandra</li>
-      	  	<li><a href="equipe.php?equipe=Seniors">Composition</a></li>
-      	  	<li>Championnat
-              <ul>
-                <li><a href="http://isere.fff.fr/competitions/php/championnat/championnat_resultat.php?sa_no=2012&cp_no=284438&ph_no=1&gp_no=1">Résultats dernière journée</a></li>
-                <li><a href="http://isere.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2012&cp_no=284438&ph_no=1&gp_no=1">Classement</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-       
-      </ul>
+       <?php
+          $var1 = 'F';
+          $varBase = "les_equipes";
+          $paramFile = "myparam";
+          afficherEquipe($var1,$varBase,$paramFile);
+        ?> 
     </section>
   </div>
 </body>
