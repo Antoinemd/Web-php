@@ -1,61 +1,32 @@
 <?php 
 
-  // session_start();
-
   include("../admin/connexpdo.php");
   include("./blockLoggin.php");
-  // require_once('./index.php');
-    // session_start();
-// session_destroy();
-//   $connexionBar = "Authentification:";
 
-//   if(isset($_SESSION["is_auth"])) {
-//   // if(isset($_SESSION['login'])){
-
-//     $connexionBar = "Bonjour " . $_SESSION['login'] . " ! ";
-//     $connectBtn = "Deconnexion";
-//     $menuHTML = <<<EOT
-
-//     <ul>
-//       <li><a href='index.php'>Accueil</a></li>
-//       <li><a href='lesequipes.php' >Les équipes</a></li>
-//       <li><a href='terrains.php' >Terrains</a></li>
-//       <li>  
-//         &nbsp;&nbsp;&nbsp;&nbsp;
-
-//         <form action="../admin/logout.php">
-//           $connexionBar
-//           <input type='submit' value="$connectBtn" />
-//         </form>
-//       </li>
-//     </ul>
-// EOT;
-//   $_SESSION["espaceMembre"] = $menuHTML;
-
-//   } else {
-//     $connectBtn = "Connexion";
-
-//     // EOT => permet de stocker une variable sur plusieurs lignes
-//     $menuHTML = <<<EOT
-    
-//     <ul>
-//       <li><a href='index.php'>Accueil</a></li>
-//       <li><a href='lesequipes.php' >Les équipes</a></li>
-//       <li><a href='terrains.php' >Terrains</a></li>
-//       <li>  
-//         &nbsp;&nbsp;&nbsp;&nbsp; 
-        
-//         <form action="../admin/login.php" method="post">
-//           $connexionBar
-//           <input type="text" size="8" name="login" />
-//           <input type="password" size="8" name="pwd" />
-//           <input type="submit" value="$connectBtn"/>
-//         </form>
-//       </li>
-//     </ul>
-// EOT;
-//     $_SESSION["espaceVisiteur"] = $menuHTML;
-//   }
+  function ajouterEquipe(){
+    // Ajouter une équipe
+    if(isset($_SESSION["is_auth"])) {
+     
+      echo "<div>";
+        echo "<form action='../admin/add_Team.php' method='post'>";
+          echo "<span> ID: <input type='text' size='8' name='teamID' /> </span> &nbsp;&nbsp;&nbsp;";
+          echo "<span> Championnat: <input type='text' size='8' name='championnat' /> </span> &nbsp;&nbsp;&nbsp;";
+          echo "<span> Sexe: 
+                  <select name='equipeSexe'> 
+                    <option value='M'> Homme </option>
+                    <option value='F'> Femme </option>
+                  </select>
+                </span> <br><br>";
+          echo "<span> Nom du coach:<input type='text' size='8' name='nomCoach'/></span><br><br>";
+          echo "<span> Image Coach: <input type='text' size='8' name='imageCoach' /></span>";     
+          echo "<span> ImageTeam: <input type='text' size='8' name='imageTeam' /><br/><br/>";
+          echo "<span> resultats: <input type='text' size='40' name='resultats'/></span> &nbsp;&nbsp;&nbsp;";
+          echo "<span> Classement: <input type='text' size='40' name='classement'/></span><br/>";
+          echo "<input type='image' src='images/addTeam.jpg' height='42' width='42' border='0' alt='Submit' />";
+        echo "</form>";
+      echo "</div>";
+    } 
+  }
 
 
   
@@ -67,13 +38,7 @@
       $requette = "SELECT * FROM equipes WHERE sexe = 'F' ";
     }
 
-    // Ajouter une équipe
-    if(isset($_SESSION["is_auth"])) {
-      echo "<img src='images/addTeam.jpg' height='60' width='60'/>";
-    }    
-
     if($idcom = connexpdo($base,$param)) {
-      // if($idcom = connexpdo()) {
       $resultat = $idcom->query($requette);
         
       echo "<ul>";
@@ -82,13 +47,23 @@
 
           //Affichage des éléments d'édition pour la partie admin
           if(isset($_SESSION["is_auth"])) {
-            echo "<img src='images/edit.jpg' height='32' width='32'/>";
-            echo "<img src='images/trash.jpg' height='32' width='32'/>";
+            echo "<div class='edit'>"; 
+                echo "<form action='../admin/delete_Team.php' method='post'>";
+                echo "<button type='submit' name='deleteById' value='$ligne[0]' border='0'> <img src='images/trash.jpg' height='32' width='32' alt='Submit'> </button> ";
+                // Deuxieme solution, sans bouton
+                // echo "<input type='hidden' name='deleteById' value='$delId'>";
+                // echo "<input type='image' src='images/trash.jpg' height='32' width='32' border='0' alt='Submit'/>";
+                echo "</form>";
+            echo "</div>";
+            echo "<div class='edit'>"; 
+                echo "<button type='submit' name='updateById' value='$ligne[0]' border='0'> <img src='images/edit.jpg' height='32' width='32' alt='Submit'> </button> ";
+                // echo "<input type='image' src='images/edit.jpg' height='32' width='32' border='0' alt='Submit'/>";
+            echo "</div>";
            }
 
           // Affichage des images
-          echo "<img src= 'images/". $ligne[5] ."'> ";
-          echo "<img src= 'images/". $ligne[4] ."'> ";
+          echo "<img src= 'images/". $ligne[5] ."' height='180' width='265'> ";
+          echo "<img src= 'images/". $ligne[4] ."' height='180' width='150'> ";
           
           // Affichage de la promotion
           echo "<h2>" . $ligne[0] . " - " . $ligne[1] . "</h2>";
@@ -145,6 +120,15 @@
       </ul>
     </nav>         
 
+    <?php
+      if(isset($_SESSION["is_auth"])) {
+        echo "<section>";
+        echo "<h1> Ajouter une équipe </h1>";
+
+        ajouterEquipe();
+        echo "</section>";
+      }
+    ?>
     <section> <!-- Debut du listing DES équipes MASCULINES -->
       <h1>Equipes Masculines </h1>
         <?php
