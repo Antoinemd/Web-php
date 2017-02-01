@@ -9,20 +9,20 @@
      
       echo "<div>";
         echo "<form action='../admin/add_Team.php' method='post'>";
-          echo "<span> ID: <input type='text' size='8' name='teamID' /> </span> &nbsp;&nbsp;&nbsp;";
-          echo "<span> Championnat: <input type='text' size='8' name='championnat' /> </span> &nbsp;&nbsp;&nbsp;";
-          echo "<span> Sexe: 
-                  <select name='equipeSexe'> 
-                    <option value='M'> Homme </option>
-                    <option value='F'> Femme </option>
-                  </select>
-                </span> <br><br>";
-          echo "<span> Nom du coach:<input type='text' size='8' name='nomCoach'/></span><br><br>";
-          echo "<span> Image Coach: <input type='text' size='8' name='imageCoach' /></span>";     
-          echo "<span> ImageTeam: <input type='text' size='8' name='imageTeam' /><br/><br/>";
-          echo "<span> resultats: <input type='text' size='40' name='resultats'/></span> &nbsp;&nbsp;&nbsp;";
-          echo "<span> Classement: <input type='text' size='40' name='classement'/></span><br/>";
-          echo "<input type='image' src='images/addTeam.jpg' height='42' width='42' border='0' alt='Submit' />";
+        echo "<table>";
+          echo "<tr><td> ID: <input type='text' size='8' name='teamID'/> </td>";
+          echo "<td> Championnat: <input type='text' size='8' name='championnat'/></td>";
+          echo "<td> Sexe: <select name='equipeSexe'><option value='M'> Homme </option><option value='F'>Femme </option></select></td></tr>";
+          
+          echo "<tr><td> Nom du coach:<input type='text' size='8' name='nomCoach'/></td>";
+          echo "<td> Image Coach: <input type='text' size='8' name='imageCoach'/></td>";     
+          echo "<td> ImageTeam: <input type='text' size='8' name='imageTeam' /></td></tr>";
+          
+          echo "<tr><td> resultats: <input type='text' size='30' name='resultats'/></td>";
+          echo "<td> Classement: <input type='text' size='30' name='classement'/></td></tr>";
+          
+          echo "<tr><td><input type='image' src='images/addTeam.jpg' height='42' width='42' border='0' alt='Submit' /></td></tr>";
+        echo "</table>";
         echo "</form>";
       echo "</div>";
     } 
