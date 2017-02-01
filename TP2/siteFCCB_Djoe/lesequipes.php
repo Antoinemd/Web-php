@@ -49,15 +49,26 @@
           if(isset($_SESSION["is_auth"])) {
             echo "<div class='edit'>"; 
                 echo "<form action='../admin/delete_Team.php' method='post'>";
-                echo "<button type='submit' name='deleteById' value='$ligne[0]' border='0'> <img src='images/trash.jpg' height='32' width='32' alt='Submit'> </button> ";
-                // Deuxieme solution, sans bouton
-                // echo "<input type='hidden' name='deleteById' value='$delId'>";
+                echo "<button type='submit' name='deleteById' value='$ligne[0]' border='0'>
+                        <img src='images/trash.jpg' height='32' width='32' alt='Submit'>
+                      </button> ";
+                // version sans bouton
+                // echo "<input type='hidden' name='deleteById' value='$ligne[0]'>";
                 // echo "<input type='image' src='images/trash.jpg' height='32' width='32' border='0' alt='Submit'/>";
                 echo "</form>";
             echo "</div>";
             echo "<div class='edit'>"; 
-                echo "<button type='submit' name='updateById' value='$ligne[0]' border='0'> <img src='images/edit.jpg' height='32' width='32' alt='Submit'> </button> ";
-                // echo "<input type='image' src='images/edit.jpg' height='32' width='32' border='0' alt='Submit'/>";
+                echo "<form action='../admin/edit_Team.php' method='post'>";
+              
+                // on créer un <input> pour chaque attribut pour les envoyer et les récupérer ensuite via le $_POST dans un type 'array'
+                foreach ($ligne as $value) {
+                  echo '<input type="hidden" name="result[]" value="'. $value. '">';
+                } 
+
+                echo "<button type='submit' name='updateById' border='0'> 
+                        <img src='images/edit.jpg' height='32' width='32' alt='Submit'>
+                      </button> ";
+                echo "</form>";
             echo "</div>";
            }
 
