@@ -17,6 +17,7 @@ if (!empty($_POST['deleteById'])) {
 
 	if($idcom = connexpdo($base,$paramFile)) {
 		echo "request ready <br>";
+		
 		$statement = $idcom->prepare($requete);
 		$statement->execute(array(
 			":equipe_to_delete"=>$equipe_to_delete
