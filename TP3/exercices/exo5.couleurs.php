@@ -24,6 +24,7 @@
 		$_SESSION['session_textColor'] = $_COOKIE['cookie_textColor'];
 
 	} else {
+		// a réécrire en plus simple + bug a corriger lors de l'expiration du cookie pendant la navigation
 		echo "cookie statues = welcome back";
 		if (isset($_POST['bgColor']) && isset($_POST['textColor'])) {
 			// les variables personnalisées $_SESSION sont persistantes jusqu'à expiration du cookie

@@ -6,7 +6,8 @@ session_start();
 
 if (!isset($_COOKIE['cookie_bgColor'])&& !isset($_COOKIE['cookie_textColor'])){
 	echo "erreur cookie unset \n";
-	// echo "value: " . $_COOKIE['cookie_bgColor'];
+	
+
 }else{
 
 	echo "
