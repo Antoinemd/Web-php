@@ -9,6 +9,7 @@
    
     try {
       $idcom = new PDO($dsn,$user,$pass);
+      $idcom->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
       return $idcom;
     }
     catch(PDOException $except) {
